@@ -1,0 +1,19 @@
+# Compiled binaries
+task1
+task2
+*.exe
+*.o
+*.obj
+*.out
+
+# Generated output
+table.txt
+
+# Visual Studio
+.vs/
+*.vcxproj*
+*.sln
+Debug/
+Release/
+x64/
+x86/
