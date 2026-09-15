@@ -33,7 +33,6 @@ public:
 };
 
 int main() {
-
     setlocale(LC_ALL, "Ukrainian");
 
     int variant;
@@ -61,24 +60,22 @@ int main() {
 
     cout << "\n--- Task 2: tabulation of a and b over x in [-1, 1], step 0.2 ---\n";
     cout << "(y = " << y << ", z = " << z << " fixed)\n\n";
-    cout << "    x     |       a          |       b\n";
+    cout << "         x |                a |                b\n";
     cout << "---------------------------------------------------\n";
 
-    for (double xi = xn; xi <= xk + 1e-9; xi += dx) {
+    int steps = round((xk - xn) / dx);
+    for (int i = 0; i <= steps; ++i) {
+        double xi = xn + i * dx;
 
-        if (fabs(xi) < 1e-9)
+        if (fabs(xi) < 1e-9) {
             xi = 0.0;
-
-        if (xi == 0.0) {
-            cout << setw(7) << xi << " | " << setw(16) << "не визнач." << " | " << setw(16) << "-" << endl;
-            continue;
         }
 
         FunctionCalculator tab;
         tab.Fn_b(xi, y, z);
         tab.Fn_a(xi, y, z);
 
-        cout << setw(7) << xi << " | "
+        cout << setw(10) << xi << " | "
             << setw(16) << tab.geta() << " | "
             << setw(16) << tab.getb() << endl;
     }
