@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iomanip>
 
+
 using namespace std;
 
 
@@ -32,11 +33,13 @@ public:
 };
 
 int main() {
+
+    setlocale(LC_ALL, "Ukrainian");
+
     int variant;
     cout << "Enter variant number: ";
     cin >> variant;
 
-    
     double x = 0.48 * variant;
     double y = 0.47 * variant;
     double z = -1.32 * variant;
@@ -46,13 +49,12 @@ int main() {
     cout << "x = " << x << "   y = " << y << "   z = " << z << endl;
 
     FunctionCalculator calc;
-    calc.Fn_b(x, y, z);   
-    calc.Fn_a(x, y, z);   
+    calc.Fn_b(x, y, z);
+    calc.Fn_a(x, y, z);
 
     cout << "a[x,y,z,b] = " << calc.geta() << endl;
     cout << "b[x,y,z]   = " << calc.getb() << endl;
 
-   
     double xn = -1.0;
     double xk = 1.0;
     double dx = 0.2;
@@ -63,6 +65,15 @@ int main() {
     cout << "---------------------------------------------------\n";
 
     for (double xi = xn; xi <= xk + 1e-9; xi += dx) {
+
+        if (fabs(xi) < 1e-9)
+            xi = 0.0;
+
+        if (xi == 0.0) {
+            cout << setw(7) << xi << " | " << setw(16) << "не визнач." << " | " << setw(16) << "-" << endl;
+            continue;
+        }
+
         FunctionCalculator tab;
         tab.Fn_b(xi, y, z);
         tab.Fn_a(xi, y, z);
